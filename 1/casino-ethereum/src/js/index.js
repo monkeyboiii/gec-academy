@@ -33,45 +33,112 @@ class App extends React.Component {
 		const MyContract = web3.eth.contract([
 			{
 				constant: false,
-				inputs: [
-					{ name: "myid", type: "bytes32" },
-					{ name: "result", type: "string" },
-				],
-				name: "__callback",
-				outputs: [],
-				payable: false,
-				stateMutability: "nonpayable",
-				type: "function",
-			},
-			{
-				constant: false,
-				inputs: [
-					{ name: "_queryId", type: "bytes32" },
-					{ name: "_result", type: "string" },
-					{ name: "_proof", type: "bytes" },
-				],
-				name: "__callback",
-				outputs: [],
-				payable: false,
-				stateMutability: "nonpayable",
-				type: "function",
-			},
-			{
-				constant: false,
-				inputs: [{ name: "numberToBet", type: "uint256" }],
-				name: "bet",
+				inputs: [],
+				name: "generateNumberWinner",
 				outputs: [],
 				payable: true,
 				stateMutability: "payable",
 				type: "function",
 			},
 			{
+				constant: true,
+				inputs: [],
+				name: "LIMIT_AMOUNT_BETS",
+				outputs: [
+					{
+						name: "",
+						type: "uint256",
+					},
+				],
+				payable: false,
+				stateMutability: "view",
+				type: "function",
+			},
+			{
 				constant: false,
-				inputs: [{ name: "player", type: "address" }],
-				name: "checkPlayerExists",
-				outputs: [{ name: "", type: "bool" }],
+				inputs: [
+					{
+						name: "myid",
+						type: "bytes32",
+					},
+					{
+						name: "result",
+						type: "string",
+					},
+				],
+				name: "__callback",
+				outputs: [],
 				payable: false,
 				stateMutability: "nonpayable",
+				type: "function",
+			},
+			{
+				constant: true,
+				inputs: [],
+				name: "numberOfBets",
+				outputs: [
+					{
+						name: "",
+						type: "uint256",
+					},
+				],
+				payable: false,
+				stateMutability: "view",
+				type: "function",
+			},
+			{
+				constant: false,
+				inputs: [
+					{
+						name: "_queryId",
+						type: "bytes32",
+					},
+					{
+						name: "_result",
+						type: "string",
+					},
+					{
+						name: "_proof",
+						type: "bytes",
+					},
+				],
+				name: "__callback",
+				outputs: [],
+				payable: false,
+				stateMutability: "nonpayable",
+				type: "function",
+			},
+			{
+				constant: false,
+				inputs: [
+					{
+						name: "player",
+						type: "address",
+					},
+				],
+				name: "checkPlayerExists",
+				outputs: [
+					{
+						name: "",
+						type: "bool",
+					},
+				],
+				payable: false,
+				stateMutability: "nonpayable",
+				type: "function",
+			},
+			{
+				constant: false,
+				inputs: [
+					{
+						name: "numberToBet",
+						type: "uint256",
+					},
+				],
+				name: "bet",
+				outputs: [],
+				payable: true,
+				stateMutability: "payable",
 				type: "function",
 			},
 			{
@@ -84,37 +151,15 @@ class App extends React.Component {
 				type: "function",
 			},
 			{
-				constant: false,
+				constant: true,
 				inputs: [],
-				name: "generateNumberWinner",
-				outputs: [],
-				payable: true,
-				stateMutability: "payable",
-				type: "function",
-			},
-			{
-				inputs: [
-					{ name: "_minimumBet", type: "uint256" },
-					{ name: "_maxAmountOfBets", type: "uint256" },
+				name: "numberWinner",
+				outputs: [
+					{
+						name: "",
+						type: "uint256",
+					},
 				],
-				payable: false,
-				stateMutability: "nonpayable",
-				type: "constructor",
-			},
-			{
-				constant: true,
-				inputs: [],
-				name: "LIMIT_AMOUNT_BETS",
-				outputs: [{ name: "", type: "uint256" }],
-				payable: false,
-				stateMutability: "view",
-				type: "function",
-			},
-			{
-				constant: true,
-				inputs: [],
-				name: "maxAmountOfBets",
-				outputs: [{ name: "", type: "uint256" }],
 				payable: false,
 				stateMutability: "view",
 				type: "function",
@@ -123,7 +168,12 @@ class App extends React.Component {
 				constant: true,
 				inputs: [],
 				name: "minimumBet",
-				outputs: [{ name: "", type: "uint256" }],
+				outputs: [
+					{
+						name: "",
+						type: "uint256",
+					},
+				],
 				payable: false,
 				stateMutability: "view",
 				type: "function",
@@ -131,26 +181,32 @@ class App extends React.Component {
 			{
 				constant: true,
 				inputs: [],
-				name: "numberOfBets",
-				outputs: [{ name: "", type: "uint256" }],
+				name: "maxAmountOfBets",
+				outputs: [
+					{
+						name: "",
+						type: "uint256",
+					},
+				],
 				payable: false,
 				stateMutability: "view",
 				type: "function",
 			},
 			{
 				constant: true,
-				inputs: [],
-				name: "numberWinner",
-				outputs: [{ name: "", type: "uint256" }],
-				payable: false,
-				stateMutability: "view",
-				type: "function",
-			},
-			{
-				constant: true,
-				inputs: [{ name: "", type: "uint256" }],
+				inputs: [
+					{
+						name: "",
+						type: "uint256",
+					},
+				],
 				name: "players",
-				outputs: [{ name: "", type: "address" }],
+				outputs: [
+					{
+						name: "",
+						type: "address",
+					},
+				],
 				payable: false,
 				stateMutability: "view",
 				type: "function",
@@ -159,16 +215,36 @@ class App extends React.Component {
 				constant: true,
 				inputs: [],
 				name: "totalBet",
-				outputs: [{ name: "", type: "uint256" }],
+				outputs: [
+					{
+						name: "",
+						type: "uint256",
+					},
+				],
 				payable: false,
 				stateMutability: "view",
 				type: "function",
 			},
+			{
+				inputs: [
+					{
+						name: "_minimumBet",
+						type: "uint256",
+					},
+					{
+						name: "_maxAmountOfBets",
+						type: "uint256",
+					},
+				],
+				payable: false,
+				stateMutability: "nonpayable",
+				type: "constructor",
+			},
 		]);
 		this.state.ContractInstance = MyContract.at(
-			// "0x430d959fa54714aca8eecd61fae2661fca900e04"
-			// "0x" + "23e233693cbaa67eb6a19f25584342ecfee4aed3".toUpperCase()
-			"0x23e233693cbaa67eb6a19f25584342ecfee4aed3"
+			// "0x430d959fa54714aca8eecd61fae2661fca900e04" // original
+			// "0x23e233693cbaa67eb6a19f25584342ecfee4aed3" // first
+			"0xE6767Ac43898F4559EA4Cf89180E8fdd44C09b69" // no value assertion
 		);
 
 		window.a = this.state;
